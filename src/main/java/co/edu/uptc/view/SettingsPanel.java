@@ -1,10 +1,9 @@
 package co.edu.uptc.view;
 
 import javax.swing.*;
+import java.awt.*;
 
 import co.edu.uptc.Utils.PropertiesService;
-
-import java.awt.*;
 
 public class SettingsPanel extends JPanel {
 
@@ -14,6 +13,8 @@ public class SettingsPanel extends JPanel {
         initPanel();
         createBackButton();
         createTitle();
+        createMusicSetting();
+        createTimerSetting();
     }
 
     private void initPanel() {
@@ -40,8 +41,8 @@ public class SettingsPanel extends JPanel {
     private void createTitle() {
         JLabel label = new JLabel("Settings", SwingConstants.CENTER);
         label.setForeground(Color.WHITE);
-        label.setFont(new Font("Arial", Font.BOLD, 24));
-        label.setBounds(150, 20, 200, 50);
+        label.setFont(new Font("Arial", Font.BOLD, 50));
+        label.setBounds(140, 120, 200, 70);
         add(label);
     }
 
@@ -60,8 +61,35 @@ public class SettingsPanel extends JPanel {
         this.add(backButton);
     }
 
+    private void createMusicSetting() {
+        JLabel musicLabel = new JLabel("Music");
+        musicLabel.setForeground(Color.WHITE);
+        musicLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        musicLabel.setBounds(150, 250, 100, 30);
+        add(musicLabel);
+        JCheckBox musicCheckBox = new JCheckBox();
+        musicCheckBox.setBounds(300, 250, 30, 30);
+        musicCheckBox.setBackground(new Color(30, 30, 70));
+        musicCheckBox.setForeground(Color.WHITE);
+        musicCheckBox.setFocusPainted(false);
+        add(musicCheckBox);
+    }
+
+    private void createTimerSetting() {
+        JLabel timerLabel = new JLabel("Timer");
+        timerLabel.setForeground(Color.WHITE);
+        timerLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        timerLabel.setBounds(150, 350, 100, 30);
+        add(timerLabel);
+        JCheckBox timerCheckBox = new JCheckBox();
+        timerCheckBox.setBounds(300, 350, 30, 30);
+        timerCheckBox.setBackground(new Color(30, 30, 70));
+        timerCheckBox.setForeground(Color.WHITE);
+        timerCheckBox.setFocusPainted(false);
+        add(timerCheckBox);
+    }
+
     public ImageIcon getImageIcon(String key) {
         return new ImageIcon(key);
     }
-
 }

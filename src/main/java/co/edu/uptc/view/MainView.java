@@ -13,6 +13,7 @@ public class MainView extends JFrame {
         setSize(500, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.setResizable(false);
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
         MenuPanel menuPanel = new MenuPanel();

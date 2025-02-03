@@ -65,13 +65,16 @@ public class SettingsPanel extends JPanel {
         JLabel musicLabel = new JLabel("Music");
         musicLabel.setForeground(Color.WHITE);
         musicLabel.setFont(new Font("Arial", Font.PLAIN, 30));
-        musicLabel.setBounds(150, 250, 100, 30);
+        musicLabel.setBounds(150, 400, 100, 30);
         add(musicLabel);
         JCheckBox musicCheckBox = new JCheckBox();
-        musicCheckBox.setBounds(300, 250, 30, 30);
-        musicCheckBox.setBackground(new Color(30, 30, 70));
-        musicCheckBox.setForeground(Color.WHITE);
+        musicCheckBox.setBounds(300, 400, 40, 40);
+        musicCheckBox.setOpaque(false);
         musicCheckBox.setFocusPainted(false);
+        UIManager.put("CheckBox.background", new Color(0, 0, 0, 0));
+        UIManager.put("CheckBox.foreground", Color.WHITE);
+        UIManager.put("CheckBox.icon", new CustomCheckBoxIcon());
+        SwingUtilities.updateComponentTreeUI(musicCheckBox);
         add(musicCheckBox);
     }
 
@@ -79,14 +82,47 @@ public class SettingsPanel extends JPanel {
         JLabel timerLabel = new JLabel("Timer");
         timerLabel.setForeground(Color.WHITE);
         timerLabel.setFont(new Font("Arial", Font.PLAIN, 30));
-        timerLabel.setBounds(150, 350, 100, 30);
+        timerLabel.setBounds(150, 300, 100, 30);
         add(timerLabel);
         JCheckBox timerCheckBox = new JCheckBox();
-        timerCheckBox.setBounds(300, 350, 30, 30);
-        timerCheckBox.setBackground(new Color(30, 30, 70));
-        timerCheckBox.setForeground(Color.WHITE);
+        timerCheckBox.setBounds(300, 300, 40, 40);
+        timerCheckBox.setOpaque(false);
         timerCheckBox.setFocusPainted(false);
+        UIManager.put("CheckBox.background", new Color(0, 0, 0, 0));
+        UIManager.put("CheckBox.foreground", Color.WHITE);
+        UIManager.put("CheckBox.icon", new CustomCheckBoxIcon());
+
+        SwingUtilities.updateComponentTreeUI(timerCheckBox);
         add(timerCheckBox);
+    }
+
+    class CustomCheckBoxIcon implements Icon {
+        private final int SIZE = 20;
+
+        @Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            JCheckBox checkBox = (JCheckBox) c;
+            ButtonModel model = checkBox.getModel();
+            g.setColor(new Color(30, 30, 70));
+            g.fillRect(x, y, SIZE, SIZE);
+            g.setColor(Color.WHITE);
+            g.drawRect(x, y, SIZE, SIZE);
+            if (model.isSelected()) {
+                g.setColor(Color.WHITE);
+                g.drawLine(x + 3, y + SIZE / 2, x + SIZE / 2, y + SIZE - 3);
+                g.drawLine(x + SIZE / 2, y + SIZE - 3, x + SIZE - 3, y + 3);
+            }
+        }
+
+        @Override
+        public int getIconWidth() {
+            return SIZE;
+        }
+
+        @Override
+        public int getIconHeight() {
+            return SIZE;
+        }
     }
 
     public ImageIcon getImageIcon(String key) {

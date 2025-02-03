@@ -18,7 +18,23 @@ public class SettingsPanel extends JPanel {
 
     private void initPanel() {
         setLayout(null);
-        setBackground(Color.green);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        createBackground(g);
+    }
+
+    private void createBackground(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        Color color1 = new Color(10, 10, 40);
+        Color color2 = new Color(20, 20, 60);
+        GradientPaint gradient = new GradientPaint(
+                0, 0, color1,
+                0, getHeight(), color2);
+        g2d.setPaint(gradient);
+        g2d.fillRect(0, 0, getWidth(), getHeight());
     }
 
     private void createTitle() {

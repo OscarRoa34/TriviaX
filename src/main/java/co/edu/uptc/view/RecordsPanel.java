@@ -1,10 +1,10 @@
 package co.edu.uptc.view;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 import co.edu.uptc.Utils.PropertiesService;
-
-import java.awt.*;
 
 public class RecordsPanel extends JPanel {
 
@@ -14,6 +14,7 @@ public class RecordsPanel extends JPanel {
         initPanel();
         createBackButton();
         createTitle();
+        createRecordsTable();
     }
 
     private void initPanel() {
@@ -40,8 +41,8 @@ public class RecordsPanel extends JPanel {
     private void createTitle() {
         JLabel label = new JLabel("Records", SwingConstants.CENTER);
         label.setForeground(Color.WHITE);
-        label.setFont(new Font("Arial", Font.BOLD, 24));
-        label.setBounds(150, 20, 200, 50);
+        label.setFont(new Font("Arial", Font.BOLD, 50));
+        label.setBounds(120, 100, 250, 50);
         add(label);
     }
 
@@ -58,6 +59,26 @@ public class RecordsPanel extends JPanel {
             mainView.showPanel("Menu");
         });
         this.add(backButton);
+    }
+
+    private void createRecordsTable() {
+        String[] columnNames = { "Nombre", "Aciertos" };
+        Object[][] data = {
+                { "1. Oscar", 10 },
+                { "2. Sara", 5 }
+        };
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        JTable table = new JTable(model);
+        table.setForeground(Color.WHITE);
+        table.setBackground(new Color(30, 30, 70));
+        table.setFont(new Font("Arial", Font.PLAIN, 16));
+        table.setRowHeight(30);
+        table.setEnabled(false);
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(43, 250, 400, 150);
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        this.add(scrollPane);
     }
 
     public ImageIcon getImageIcon(String key) {

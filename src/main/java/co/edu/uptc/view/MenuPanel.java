@@ -53,9 +53,9 @@ public class MenuPanel extends JPanel {
 
     private void createTitle() {
         title = new StrokeLabel("TriviaX", new Color(27, 165, 224), 20f);
-        title.setBounds(119, 71, 253, 84);
+        title.setBounds(44, 71, 400, 100);
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        Font legoFont = loadFont(propertiesService.getProperties("logo.font"), 64f);
+        Font legoFont = loadFont(propertiesService.getProperties("logo.font"), 100f);
         title.setFont(legoFont);
         title.setForeground(Color.WHITE);
         this.add(title);
@@ -63,7 +63,7 @@ public class MenuPanel extends JPanel {
 
     private void createPlayButton() {
         JButton playButton = new JButton();
-        playButton.setBounds(180, 200, 128, 128);
+        playButton.setBounds(180, 230, 128, 128);
         playButton.setIcon(getImageIcon(propertiesService.getProperties("play.icon")));
         playButton.setBackground(new Color(27, 165, 224));
         playButton.setFocusPainted(false);
@@ -78,7 +78,7 @@ public class MenuPanel extends JPanel {
 
     private void createSettingsButton() {
         JButton settingsButton = new JButton();
-        settingsButton.setBounds(32, 200, 128, 128);
+        settingsButton.setBounds(32, 230, 128, 128);
         settingsButton.setIcon(getImageIcon(propertiesService.getProperties("settings.icon")));
         settingsButton.setBackground(new Color(27, 165, 224));
         settingsButton.setFocusPainted(false);
@@ -93,7 +93,7 @@ public class MenuPanel extends JPanel {
 
     private void createRecordsButton() {
         JButton recordsButton = new JButton();
-        recordsButton.setBounds(328, 200, 128, 128);
+        recordsButton.setBounds(328, 230, 128, 128);
         recordsButton.setIcon(getImageIcon(propertiesService.getProperties("trophy.icon")));
         recordsButton.setBackground(new Color(27, 165, 224));
         recordsButton.setFocusPainted(false);
@@ -108,7 +108,7 @@ public class MenuPanel extends JPanel {
 
     private void createExitButton() {
         JButton exitButton = new JButton();
-        exitButton.setBounds(180, 350, 128, 128);
+        exitButton.setBounds(180, 390, 128, 128);
         exitButton.setIcon(getImageIcon(propertiesService.getProperties("exit.icon")));
         exitButton.setBackground(new Color(27, 165, 224));
         exitButton.setFocusPainted(false);

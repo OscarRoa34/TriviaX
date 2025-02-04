@@ -3,8 +3,11 @@ package co.edu.uptc.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 
 import co.edu.uptc.Utils.PropertiesService;
+import co.edu.uptc.model.Record; // Asegúrate de que la clase Record esté en este paquete
+import co.edu.uptc.model.RecordsLoader; // Asegúrate de que la clase RecordsLoader esté en este paquete
 
 public class RecordsPanel extends JPanel {
 
@@ -62,22 +65,38 @@ public class RecordsPanel extends JPanel {
     }
 
     private void createRecordsTable() {
+        // Columnas de la tabla
         String[] columnNames = { "Nombre", "Aciertos" };
-        Object[][] data = {
-                { "1. Oscar", 10 },
-                { "2. Sara", 5 }
-        };
+
+        // Obtener los datos de la base de datos
+        List<Record> records = RecordsLoader.loadRecordsFromDatabase();
+
+        // Convertir los registros en una matriz de objetos para la JTable
+        Object[][] data = new Object[records.size()][2];
+        for (int i = 0; i < records.size(); i++) {
+            Record record = records.get(i);
+            data[i][0] = (i + 1) + ". " + record.getName(); // Nombre con número de posición
+            data[i][1] = record.getCorrectChoices(); // Aciertos
+        }
+
+        // Crear el modelo de la tabla
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
+
+        // Crear la JTable con el modelo
         JTable table = new JTable(model);
         table.setForeground(Color.WHITE);
         table.setBackground(new Color(30, 30, 70));
         table.setFont(new Font("Arial", Font.PLAIN, 16));
         table.setRowHeight(30);
-        table.setEnabled(false);
+        table.setEnabled(false); // Hacer la tabla no editable
+
+        // Agregar la tabla a un JScrollPane
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(43, 250, 400, 150);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
+
+        // Agregar el JScrollPane al panel
         this.add(scrollPane);
     }
 
